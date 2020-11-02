@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./front:/front
+    working_dir: /front/my-app
+    command: sh -c "npm install & npm start"
+    tty: true
+    ports:
+      - 3000:3000
