@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -6,6 +6,8 @@ interface TextFieldProps {
   id: string;
   label: string;
   helperText: string;
+  value: string;
+  setValue(e: string): void;
 }
 
 /**
@@ -14,7 +16,6 @@ interface TextFieldProps {
  */
 const WrapOutlinedTextField = (props: TextFieldProps) => {
   const classes = useStyles();
-  const [input, setValue] = useState("");
 
   return (
     <>
@@ -24,8 +25,8 @@ const WrapOutlinedTextField = (props: TextFieldProps) => {
         label={props.label}
         variant="outlined"
         helperText={props.helperText}
-        value={input}
-        onChange={(e) => setValue(e.target.value)}
+        value={props.value}
+        onChange={(e) => props.setValue(e.target.value)}
       ></TextField>
     </>
   );
