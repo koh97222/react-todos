@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WrapButton from "./components/WrapButton";
 import WrapOutlinedTextField from "./components/WrapOutlinedTextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,8 +11,47 @@ import WrapDataTable from "./components/WrapDataTable";
  */
 const TodoPage = () => {
   const classes = useStyles();
-  const [todo, setValue] = useState("");
+  const initValue: string = "";
+  const [todo, setValue] = useState(initValue);
+  const [err, addErr] = useState<string[]>([]);
   const [todos, addTodo] = useState<object[]>([]);
+
+  useEffect(() => {
+    setValue(initValue);
+  }, [todos]);
+
+  /**
+   * validate
+   * 【条件】空文字でなく、50字未満であること。
+   * @returns {boolean}
+   * @param {string} todo
+   */
+  const validate = (todo: string) => {
+    if (todo === "") {
+      const errMsg = "文字を入力してください。";
+      addErr([...err, errMsg]);
+    }
+    if (todo.length > 50) {
+      const errMsg = "50字未満で入力してください。";
+      addErr([...err, errMsg]);
+    }
+    console.log(err.length);
+    const isValid = err.length === 0;
+    return isValid;
+  };
+
+  /**
+   * onclick 登録ボタン押下時
+   * 入力チェックを行い、条件に合う場合todoを追加する。
+   * @param todo
+   * @param todos
+   */
+  const onClick = (todo: string, todos: object[]) => {
+    if (validate(todo)) {
+      let id = todos.length + 1;
+      addTodo([...todos, { id, todo }]);
+    }
+  };
 
   return (
     <>
@@ -32,8 +71,7 @@ const TodoPage = () => {
             <WrapButton
               title={"登録"}
               click={() => {
-                let id = todos.length + 1;
-                addTodo([...todos, { id, todo }]);
+                onClick(todo, todos);
               }}
             />
           </form>
