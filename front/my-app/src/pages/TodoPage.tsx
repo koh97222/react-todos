@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import WrapButton from "./components/WrapButton";
-import WrapOutlinedTextField from "./components/WrapOutlinedTextField";
+import WrapButton from "../components/WrapButton";
+import WrapOutlinedTextField from "../components/WrapOutlinedTextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
-import WrapDataTable from "./components/WrapDataTable";
+import WrapDataTable from "../components/WrapDataTable";
 
 /**
  * TodoPage

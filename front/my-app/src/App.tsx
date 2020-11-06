@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Container } from "@material-ui/core";
-import TodoPage from "./TodoPage";
+import TodoPage from "./pages/TodoPage";
 
 function App() {
   return (
