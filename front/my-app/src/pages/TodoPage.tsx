@@ -12,13 +12,15 @@ import WrapDataTable from "../components/WrapDataTable";
 const TodoPage = () => {
   const classes = useStyles();
   const initValue: string = "";
+  // エラー状態を同期的に判定したいため、追加（useStateは非同期なので・・）
+  // TODO: もっとよいやり方はないか。。イケてない・・
+  let hasErr: boolean = false;
   const [todo, setValue] = useState(initValue);
   const [err, addErr] = useState<string[]>([]);
   const [todos, addTodo] = useState<object[]>([]);
-
   useEffect(() => {
     setValue(initValue);
-  }, [todos]);
+  }, [todos, err]);
 
   /**
    * validate
@@ -29,11 +31,17 @@ const TodoPage = () => {
   const validate = (todo: string) => {
     if (todo === "") {
       const errMsg = "文字を入力してください。";
-      addErr([...err, errMsg]);
+      addErr((prevErr) => {
+        hasErr = true;
+        return [...prevErr, errMsg];
+      });
     }
     if (todo.length > 50) {
       const errMsg = "50字未満で入力してください。";
-      addErr([...err, errMsg]);
+      addErr((prevErr) => {
+        hasErr = true;
+        return [...prevErr, errMsg];
+      });
     }
     console.log(err.length);
     const isValid = err.length === 0;
@@ -47,9 +55,11 @@ const TodoPage = () => {
    * @param todos
    */
   const onClick = (todo: string, todos: object[]) => {
-    if (validate(todo)) {
+    if (validate(todo) && !hasErr) {
       let id = todos.length + 1;
-      addTodo([...todos, { id, todo }]);
+      addTodo((prevTodos) => {
+        return [...prevTodos, { id, todo }];
+      });
     }
   };
 
