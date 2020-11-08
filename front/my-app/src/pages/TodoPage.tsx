@@ -13,9 +13,6 @@ import WrapAlert from "../components/WrapAlert";
 const TodoPage = () => {
   const classes = useStyles();
   const initValue: string = "";
-  // エラー状態を同期的に判定したいため、追加（useStateは非同期なので・・）
-  // TODO: もっとよいやり方はないか。。イケてない・・
-  let hasErr: boolean = false;
   const [todo, setValue] = useState(initValue);
   const [err, addErr] = useState<string[]>([]);
   const [todos, addTodo] = useState<object[]>([]);
@@ -32,22 +29,28 @@ const TodoPage = () => {
    * @param {string} todo
    */
   const validate = (todo: string) => {
+    /**
+     * #1
+     * stateの変数は非同期で動作するため、
+     * エラー判定用の変数を別で定義。
+     */
+    let errCnt = 0;
     if (todo === "") {
+      errCnt++;
       const errMsg = "文字を入力してください。";
       addErr((prevErr) => {
-        hasErr = true;
         return [...prevErr, errMsg];
       });
     }
     if (todo.length > 50) {
+      errCnt++;
       const errMsg = "50字未満で入力してください。";
       addErr((prevErr) => {
-        hasErr = true;
         return [...prevErr, errMsg];
       });
     }
-    console.log(err.length);
-    const isValid = err.length === 0;
+
+    const isValid = errCnt === 0;
     return isValid;
   };
 
@@ -60,11 +63,11 @@ const TodoPage = () => {
   const onClick = (todo: string, todos: object[]) => {
     // 初期化
     addErr(() => {
-      hasErr = false;
       return [];
     });
 
-    if (validate(todo) && !hasErr) {
+    const res = validate(todo);
+    if (res) {
       let id = todos.length + 1;
       addTodo((prevTodos) => {
         return [...prevTodos, { id, todo }];
