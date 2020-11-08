@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import WrapButton from "../components/WrapButton";
 import WrapOutlinedTextField from "../components/WrapOutlinedTextField";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Collapse } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import WrapDataTable from "../components/WrapDataTable";
 import WrapAlert from "../components/WrapAlert";
 
@@ -19,14 +19,12 @@ const TodoPage = () => {
   const [todo, setValue] = useState(initValue);
   const [err, addErr] = useState<string[]>([]);
   const [todos, addTodo] = useState<object[]>([]);
-  const [open, setOpen] = useState(false);
+  const divRef = useRef(null);
+
   useEffect(() => {
     setValue(initValue);
   }, [todos, err]);
 
-  useEffect(() => {
-    setOpen(err.length !== 0);
-  }, [err]);
   /**
    * validate
    * 【条件】空文字でなく、50字未満であること。
@@ -93,13 +91,7 @@ const TodoPage = () => {
         </Grid>
 
         <Grid item xs={12} sm={12}>
-          <Collapse in={open}>
-            <WrapAlert
-              wrapper={React.createRef()}
-              msg={""}
-              title={"error"}
-            ></WrapAlert>
-          </Collapse>
+          <WrapAlert ref={divRef} msg={err} title={"error"}></WrapAlert>
         </Grid>
 
         <Grid item xs={12} sm={12}>
