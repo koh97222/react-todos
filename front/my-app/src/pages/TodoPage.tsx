@@ -58,6 +58,12 @@ const TodoPage = () => {
    * @param todos
    */
   const onClick = (todo: string, todos: object[]) => {
+    // 初期化
+    addErr(() => {
+      hasErr = false;
+      return [];
+    });
+
     if (validate(todo) && !hasErr) {
       let id = todos.length + 1;
       addTodo((prevTodos) => {
