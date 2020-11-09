@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import { Collapse, ThemeProvider } from "@material-ui/core";
+import { Collapse, ThemeProvider, makeStyles } from "@material-ui/core";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core";
 
 interface AlertProps {
@@ -10,6 +10,7 @@ interface AlertProps {
 
 const WrapAlert = React.forwardRef<HTMLButtonElement, AlertProps>(
   (props, ref) => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const theme = unstable_createMuiStrictModeTheme();
 
@@ -22,8 +23,10 @@ const WrapAlert = React.forwardRef<HTMLButtonElement, AlertProps>(
         <ThemeProvider theme={theme}>
           <Collapse ref={ref} in={open}>
             <Alert severity={"error"}>
-              <AlertTitle>{props.title}</AlertTitle>
-              {props.msg}
+              <div className={classes.flex}>
+                <AlertTitle>{props.title} : </AlertTitle>
+                {props.msg}
+              </div>
             </Alert>
           </Collapse>
         </ThemeProvider>
@@ -39,5 +42,11 @@ const WrapAlert = React.forwardRef<HTMLButtonElement, AlertProps>(
 //     </button>
 //   )
 // );
+
+const useStyles = makeStyles({
+  flex: {
+    display: "flex",
+  },
+});
 
 export default WrapAlert;
