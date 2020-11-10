@@ -13,7 +13,7 @@ const WrapRouter = () => {
     <>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/top" component={Top} />
+          <Route exact path="/" component={Top} />
           <Route exact path="/todo" component={TodoPage} />
           <Route exact path="/user" component={User} />
         </Switch>

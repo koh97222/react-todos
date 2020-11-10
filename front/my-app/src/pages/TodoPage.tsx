@@ -104,7 +104,6 @@ const TodoPage = () => {
           <WrapAlert ref={divRef} msg={err} title={"error"}></WrapAlert>
         </Grid>
         <Grid item xs={12} sm={4}></Grid>
-
         <Grid item xs={12} sm={12}>
           <WrapDataTable
             height={500}
