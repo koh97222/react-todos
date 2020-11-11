@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 interface Buttonprops {
   title: string;
   click(): void;
+  width: number;
+  height: number;
 }
 
 /**
@@ -12,6 +14,12 @@ interface Buttonprops {
  * @param props
  */
 const WrapButton = (props: Buttonprops) => {
+  const useStyles = makeStyles({
+    field: {
+      height: props.height,
+      width: props.width,
+    },
+  });
   const classes = useStyles();
   return (
     <>
@@ -32,10 +40,5 @@ const WrapButton = (props: Buttonprops) => {
 /**
  * style
  */
-const useStyles = makeStyles({
-  field: {
-    height: 56,
-    width: 100,
-  },
-});
+
 export default WrapButton;

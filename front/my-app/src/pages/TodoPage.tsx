@@ -91,6 +91,8 @@ const TodoPage = () => {
               }}
             ></WrapOutlinedTextField>
             <WrapButton
+              width={120}
+              height={56}
               title={"登録"}
               click={() => {
                 onClick(todo, todos);
