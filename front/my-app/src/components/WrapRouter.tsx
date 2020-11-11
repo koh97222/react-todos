@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Top from "../pages/Top";
 import TodoPage from "../pages/TodoPage";
 import User from "../pages/User";
+import Wheather from "../pages/Weather";
 
 /**
  * WrapRouterコンポーネント
@@ -16,6 +17,7 @@ const WrapRouter = () => {
           <Route exact path="/" component={Top} />
           <Route exact path="/todo" component={TodoPage} />
           <Route exact path="/user" component={User} />
+          <Route exact path="/weather" component={Wheather} />
         </Switch>
       </BrowserRouter>
     </>

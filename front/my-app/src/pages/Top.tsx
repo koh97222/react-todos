@@ -16,7 +16,11 @@ const Top = () => {
 
       <Grid container spacing={1}>
         <Grid item xs={4} sm={4}>
-          <WrapCard title="hoge" description="鋭意作成中" path="/" />
+          <WrapCard
+            title="天気予報アプリ"
+            description="OpenWeatherMap APIを用いた天気予報アプリです。"
+            path="/weather"
+          />
         </Grid>
         <Grid item xs={4} sm={4}>
           <WrapCard
