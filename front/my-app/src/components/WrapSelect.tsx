@@ -5,6 +5,8 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 interface SelectProps {
   width: number;
   options: Array<string | number>;
+  title: string;
+  setValue(e: string): void;
 }
 
 /**
@@ -29,7 +31,7 @@ const WrapSelect = (props: SelectProps) => {
   //     value: "",
   //   });
 
-  const [value, setValue] = useState("");
+  //   const [value, setValue] = useState("");
 
   /**
    * 選択肢生成
@@ -49,22 +51,36 @@ const WrapSelect = (props: SelectProps) => {
     );
   };
 
-  //   const handleChange = (
-  //     event: React.ChangeEvent<{ name?: string; value: unknown }>
-  //   ) => {
-  //     const value = event.target.name;
-  //     setValue(value);
-  //   };
+  // 公式の仕掛けを流用してみた
+  const [state, setState] = React.useState<{
+    value: string | number;
+    name: string;
+  }>({
+    value: "",
+    name: props.title,
+  });
+  const handleChange = (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) => {
+    const name = event.target.name as keyof typeof state;
+
+    props.setValue(event.target.value as string);
+
+    setState({
+      ...state,
+      [name]: event.target.value,
+    });
+  };
 
   return (
     <>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-simple">Age</InputLabel>
+        <InputLabel htmlFor="age-native-simple">{props.title}</InputLabel>
         <Select
           id="select"
           native
-          //   value={state.value}
-          //   onChange={(e) => handleChange(e)}
+          value={state.value}
+          onChange={(e) => handleChange(e)}
           inputProps={{
             name: "value",
             id: "age-native-simple",

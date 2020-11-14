@@ -10,7 +10,7 @@ import WrapSelect from "../components/WrapSelect";
  */
 const Weather = () => {
   const classes = useStyles();
-  const [city, setCity] = useState();
+  const [city, setCity] = useState("");
   return (
     <>
       <div className={classes.main}>
@@ -19,7 +19,12 @@ const Weather = () => {
 
         <div className={classes.mb100}></div>
 
-        <WrapSelect width={300} options={cityOption}></WrapSelect>
+        <WrapSelect
+          title={"City"}
+          width={300}
+          options={cityOption}
+          setValue={(e) => setCity(e)}
+        ></WrapSelect>
         <WrapButton
           width={200}
           height={56}
