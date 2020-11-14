@@ -23,16 +23,6 @@ const WrapSelect = (props: SelectProps) => {
   );
   const classes = useStyles();
 
-  //   const [state, setState] = React.useState<{
-  //     idx: number;
-  //     value: string;
-  //   }>({
-  //     idx: 0,
-  //     value: "",
-  //   });
-
-  //   const [value, setValue] = useState("");
-
   /**
    * 選択肢生成
    * @param options
