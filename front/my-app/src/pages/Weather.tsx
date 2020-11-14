@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 import WrapSelect from "../components/WrapSelect";
 import getWeather from "../Weather";
 import WeatherInfo from "../components/WeatherInfo";
+import Spinner from "../components/Spinner";
 
 /**
  * Weather画面
@@ -12,10 +13,28 @@ import WeatherInfo from "../components/WeatherInfo";
 const Weather = () => {
   const classes = useStyles();
   const [city, setCity] = useState("");
+  const [isSpinnerOpen, setSpinner] = useState(false);
 
   useEffect(() => {
     getWeatherInfo(city);
   }, [city]);
+
+  const getWeatherInfo = (city: string) => {
+    console.log("getWeatherInfo start");
+    setSpinner(true);
+    // call REST API
+    getWeather(city)
+      .then((d) => {
+        console.log(d);
+      })
+      .catch((d) => {
+        console.error(d);
+      })
+      .finally(() => {
+        setSpinner(false);
+      });
+  };
+
   return (
     <>
       <div className={classes.main}>
@@ -34,21 +53,11 @@ const Weather = () => {
         <div className={classes.mb100}></div>
 
         <WeatherInfo city={city} />
+
+        <Spinner isOpen={isSpinnerOpen} />
       </div>
     </>
   );
-};
-
-const getWeatherInfo = (city: string) => {
-  console.log("getWeatherInfo start");
-  // call REST API
-  getWeather(city)
-    .then((d) => {
-      console.log(d);
-    })
-    .catch((d) => {
-      console.error(d);
-    });
 };
 
 const cityOption = ["札幌", "仙台", "東京", "名古屋", "大阪", "広島", "福岡"];
