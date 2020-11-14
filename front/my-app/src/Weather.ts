@@ -44,7 +44,9 @@ interface Current {
  */
 export const getWeather = async (city: string): Promise<Result> => {
   const { lat, lon } = convertCitiesToLatAndLon(city);
-  const res = await fetch(`${endpoint}?lat=${lat}&lon=${lon}&appid=${APIkey}`);
+  const res = await fetch(
+    `${endpoint}?lat=${lat}&lon=${lon}&exclude=minutely&appid=${APIkey}`
+  );
   const data = (await res.json()) as Result;
   console.log(data);
   return data;
