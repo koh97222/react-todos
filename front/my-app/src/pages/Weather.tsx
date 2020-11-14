@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
-import WrapButton from "../components/WrapButton";
 import WrapSelect from "../components/WrapSelect";
+import getWeather from "../Weather";
+import WeatherInfo from "../components/WeatherInfo";
 
 /**
  * Weather画面
@@ -11,6 +12,10 @@ import WrapSelect from "../components/WrapSelect";
 const Weather = () => {
   const classes = useStyles();
   const [city, setCity] = useState("");
+
+  useEffect(() => {
+    getWeatherInfo(city);
+  }, [city]);
   return (
     <>
       <div className={classes.main}>
@@ -25,25 +30,25 @@ const Weather = () => {
           options={cityOption}
           setValue={(e) => setCity(e)}
         ></WrapSelect>
-        <WrapButton
-          width={200}
-          height={56}
-          title={"天気予報を表示する。"}
-          click={() => {
-            getWeatherInfo();
-          }}
-        />
+
+        <div className={classes.mb100}></div>
+
+        <WeatherInfo city={city} />
       </div>
     </>
   );
 };
 
-const getWeatherInfo = () => {
+const getWeatherInfo = (city: string) => {
   console.log("getWeatherInfo start");
-  const lat = 36;
-  const lon = 140;
-  //   const path =
-  //     "https://api.openweathermap.org/data/2.5/onecall?lat=36&lon=140&appid=2ccfd4d986b14add9ca00ea5e81ef02e";
+  // call REST API
+  getWeather(city)
+    .then((d) => {
+      console.log(d);
+    })
+    .catch((d) => {
+      console.error(d);
+    });
 };
 
 const cityOption = ["札幌", "仙台", "東京", "名古屋", "大阪", "広島", "福岡"];
