@@ -4,7 +4,7 @@ import WrapSelect from "../components/WrapSelect";
 import getWeather from "../WeatherUtils";
 import WeatherInfo from "../components/WeatherInfo";
 import Spinner from "../components/Spinner";
-import { Result } from "../WeatherUtils";
+import { Result, initResultValue, cityOption } from "../WeatherUtils";
 
 /**
  * Weather画面
@@ -15,31 +15,7 @@ const Weather = () => {
   const classes = useStyles();
   const [city, setCity] = useState("");
   const [isSpinnerOpen, setSpinner] = useState(false);
-  const [result, setResult] = useState<Result>({
-    current: {
-      dt: 0,
-      sunrise: 0,
-      sunset: 0,
-      temp: 0,
-      feels_like: 0,
-      pressure: 0,
-      humidity: 0,
-      dew_point: 0,
-      uvi: 0,
-      clouds: 0,
-      visibility: 0,
-      wind_speed: 0,
-      wind_deg: 0,
-      weather: [
-        {
-          id: 0,
-          main: "",
-          description: "",
-          icon: "",
-        },
-      ],
-    },
-  });
+  const [result, setResult] = useState<Result>(initResultValue);
 
   useEffect(() => {
     getWeatherInfo(city);
@@ -86,8 +62,6 @@ const Weather = () => {
     </>
   );
 };
-
-const cityOption = ["札幌", "仙台", "東京", "名古屋", "大阪", "広島", "福岡"];
 
 /**
  * style
