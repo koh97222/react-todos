@@ -1,15 +1,11 @@
 // endpoint
 const endpoint = "https://api.openweathermap.org/data/2.5/onecall";
 const APIkey = "2ccfd4d986b14add9ca00ea5e81ef02e";
-interface Result {
-  lat: string;
-  lon: string;
-  timezone: string;
-  timezone_offset: string;
+export interface Result {
   current: Current;
 }
 
-interface Current {
+export interface Current {
   dt: number;
   sunrise: number;
   sunset: number;
@@ -26,6 +22,12 @@ interface Current {
   weather: Array<object>;
 }
 
+export interface CurrentWeather {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+}
 // interface APIError {
 //   id: string;
 //   message: string;
