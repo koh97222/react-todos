@@ -20,6 +20,7 @@ interface CardProps {
   title: string;
   description: string;
   path: string;
+  image: string;
 }
 
 const WrapCard = (props: CardProps) => {
@@ -39,8 +40,8 @@ const WrapCard = (props: CardProps) => {
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          height="500"
+          image={`${process.env.PUBLIC_URL}/todo.png`}
           title="Contemplative Reptile"
         />
         <CardContent>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Grid } from "@material-ui/core";
 import WrapSelect from "../components/WrapSelect";
 import getWeather from "../WeatherUtils";
 import WeatherInfo from "../components/WeatherInfo";
@@ -41,21 +41,28 @@ const Weather = () => {
   return (
     <>
       <div className={classes.main}>
-        <h2>天気予報ページ</h2>
-        <h5>OpenWeatherMap APIを利用して、天気予報を表示します。</h5>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={12}>
+            <h2>天気予報ページ</h2>
+            <h5>OpenWeatherMap APIを利用して、天気予報を表示します。</h5>
 
-        <div className={classes.mb100}></div>
+            <div className={classes.mb100}></div>
+            <WrapSelect
+              title={"City"}
+              width={300}
+              options={cityOption}
+              setValue={(e) => setCity(e)}
+            ></WrapSelect>
+          </Grid>
 
-        <WrapSelect
-          title={"City"}
-          width={300}
-          options={cityOption}
-          setValue={(e) => setCity(e)}
-        ></WrapSelect>
+          <div className={classes.mb100}></div>
 
-        <div className={classes.mb100}></div>
-
-        <WeatherInfo city={city} result={result} />
+          <Grid item xs={12} sm={2}></Grid>
+          <Grid item xs={12} sm={8}>
+            <WeatherInfo city={city} result={result} />
+          </Grid>
+          <Grid item xs={12} sm={2}></Grid>
+        </Grid>
 
         <Spinner isOpen={isSpinnerOpen} />
       </div>
