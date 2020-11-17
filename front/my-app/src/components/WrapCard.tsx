@@ -41,7 +41,7 @@ const WrapCard = (props: CardProps) => {
           component="img"
           alt="Contemplative Reptile"
           height="500"
-          image={`${process.env.PUBLIC_URL}/todo.png`}
+          image={`${process.env.PUBLIC_URL}/${props.image}.jpg`}
           title="Contemplative Reptile"
         />
         <CardContent>

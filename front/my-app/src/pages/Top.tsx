@@ -20,7 +20,7 @@ const Top = () => {
             title="天気予報アプリ"
             description="OpenWeatherMap APIを用いた天気予報アプリです。"
             path="/weather"
-            image="/front/my-app/public/italy-1587287_640.jpg"
+            image="weather"
           />
         </Grid>
         <Grid item xs={4} sm={4}>
@@ -28,7 +28,7 @@ const Top = () => {
             title="Todoアプリ"
             description="Todoアプリです。"
             path="/todo"
-            image="/front/my-app/public/old-1130743_640.jpg"
+            image="todo"
           />
         </Grid>
         <Grid item xs={4} sm={4}>
@@ -36,7 +36,7 @@ const Top = () => {
             title="User画面"
             description="鋭意作成中"
             path="/user"
-            image="/front/my-app/public/sparkler-677774_640.jpg"
+            image="user"
           />
         </Grid>
       </Grid>
