@@ -7,12 +7,16 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  Divider,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 380,
+  },
+  mb30: {
+    marginBottom: "30px",
   },
 });
 
@@ -48,6 +52,8 @@ const WrapCard = (props: CardProps) => {
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
           </Typography>
+          <Divider />
+          <div className={classes.mb30}></div>
           <Typography variant="body2" color="textSecondary" component="p">
             {props.description}
           </Typography>
