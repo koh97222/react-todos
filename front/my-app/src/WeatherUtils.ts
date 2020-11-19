@@ -3,8 +3,12 @@ const endpoint = "https://api.openweathermap.org/data/2.5/onecall";
 const APIkey = "2ccfd4d986b14add9ca00ea5e81ef02e";
 export interface Result {
   current: Current;
+  daily: Daily[];
 }
 
+/**
+ * その日時点の天気情報
+ */
 export interface Current {
   dt: number;
   sunrise: number;
@@ -22,22 +26,43 @@ export interface Current {
   weather: Array<object>;
 }
 
+/**
+ * 現在の天気
+ */
 export interface CurrentWeather {
   id: number;
   main: string;
   description: string;
   icon: string;
 }
-// interface APIError {
-//   id: string;
-//   message: string;
-// }
 
-// interface getWeatherResult {
-//   status: "success" | "error";
-//   apiResult?: Result;
-//   error?: string;
-// }
+/**
+ * 週間予報
+ */
+export interface Daily {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: {
+    day: number;
+    min: number;
+    max: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  feels_like: { day: number; night: number; eve: number; morn: number };
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  weather: CurrentWeather[];
+  clouds: number;
+  pop: number;
+  rain: number;
+  uvi: number;
+}
 
 /**
  *　天気予報を取得します
@@ -98,6 +123,44 @@ export const initResultValue = {
       },
     ],
   },
+  daily: [
+    {
+      dt: 1605783600,
+      sunrise: 1605764526,
+      sunset: 1605808149,
+      temp: {
+        day: 25.98,
+        min: 25.77,
+        max: 26.15,
+        night: 25.9,
+        eve: 25.85,
+        morn: 25.77,
+      },
+      feels_like: {
+        day: 26.1,
+        night: 26.5,
+        eve: 25.85,
+        morn: 25.63,
+      },
+      pressure: 1011,
+      humidity: 82,
+      dew_point: 22.67,
+      wind_speed: 7.06,
+      wind_deg: 187,
+      weather: [
+        {
+          id: 500,
+          main: "Rain",
+          description: "小雨",
+          icon: "10d",
+        },
+      ],
+      clouds: 100,
+      pop: 0.4,
+      rain: 0.26,
+      uvi: 12.32,
+    },
+  ],
 };
 
 /**
