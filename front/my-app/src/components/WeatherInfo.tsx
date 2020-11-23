@@ -16,12 +16,15 @@ const WeatherInfo = (props: infoProps) => {
   const { current, daily } = props.result;
   /**
    * ○日後の天気を表示します。
+   * expected output: 10/24：小雨 17.6℃ / 15.12℃
    * @param after
    */
   const weeklyForest = (after: number) => {
-    const dForest = `${afterDate(after)}：${
-      daily[after - 1].weather[0].description
-    } ${daily[after - 1].temp.max}℃ / ${daily[after - 1].temp.min}℃`;
+    const dForest = `
+    ${afterDate(after)}：
+    ${daily[after - 1].weather[0].description}
+    ${daily[after - 1].temp.max}℃ /
+    ${daily[after - 1].temp.min}℃`;
     return dForest;
   };
 
@@ -80,7 +83,10 @@ const useStyles = makeStyles({
     marginBottom: "50px",
   },
   justify: {
-    align: "justify",
+    width: "-Webkit-Fit-Content",
+    display: "table",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 });
 
@@ -92,7 +98,7 @@ const useStyles = makeStyles({
 const afterDate = (after: number) => {
   const d = new Date();
   d.setDate(d.getDate() + after);
-  const aftd = `${d.getMonth()}/${d.getDate()}`;
+  const aftd = `${d.getMonth() + 1}/${d.getDate()}`;
   return aftd;
 };
 
