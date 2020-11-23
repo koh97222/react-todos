@@ -15,7 +15,7 @@ const Top = () => {
       </div>
 
       <Grid container spacing={1}>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <WrapCard
             title="天気予報アプリ"
             description="OpenWeatherMap APIを用いた天気予報アプリです。"
@@ -23,7 +23,7 @@ const Top = () => {
             image="weather"
           />
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <WrapCard
             title="Todoアプリ"
             description="Todoアプリです。"
@@ -31,7 +31,7 @@ const Top = () => {
             image="todo"
           />
         </Grid>
-        <Grid item xs={4} sm={4}>
+        <Grid item xs={12} sm={4}>
           <WrapCard
             title="User画面"
             description="鋭意作成中"

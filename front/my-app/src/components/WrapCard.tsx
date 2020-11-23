@@ -44,7 +44,7 @@ const WrapCard = (props: CardProps) => {
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
-          height="500"
+          height="400"
           image={`${process.env.PUBLIC_URL}/${props.image}.jpg`}
           title="Contemplative Reptile"
         />
