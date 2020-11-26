@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "myapp415334eb": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

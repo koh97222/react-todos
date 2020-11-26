@@ -78,6 +78,10 @@ const WeatherInfo = (props: infoProps) => {
 const useStyles = makeStyles({
   main: {
     backgroundColor: "#F2F2F2",
+    "&:hover": {
+      transform: "scale(1.02,1.02)",
+      transitionDuration: "1s",
+    },
   },
   mb50: {
     marginBottom: "50px",
