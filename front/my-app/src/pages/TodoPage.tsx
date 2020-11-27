@@ -77,36 +77,40 @@ const TodoPage = () => {
 
   return (
     <>
-      <h2>React ToDoアプリ</h2>
+      <h2 className={classes.main}>React ToDoアプリ</h2>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={12}>
-          <form className={classes.form}>
-            <WrapOutlinedTextField
-              id={"content"}
-              label={"Todoを入力"}
-              helperText={"やりたいことを入力しましょう♪"}
-              value={todo}
-              setValue={(e) => {
-                setValue(e);
-              }}
-            ></WrapOutlinedTextField>
-            <WrapButton
-              width={120}
-              height={56}
-              title={"登録"}
-              click={() => {
-                onClick(todo, todos);
-              }}
-            />
-          </form>
+        <Grid item xs={12} sm={3} />
+        <Grid item xs={12} sm={6}>
+          <div className={classes.form}>
+            <form>
+              <WrapOutlinedTextField
+                id={"content"}
+                label={"Todoを入力"}
+                helperText={"やりたいことを入力しましょう♪"}
+                value={todo}
+                setValue={(e) => {
+                  setValue(e);
+                }}
+              ></WrapOutlinedTextField>
+              <WrapButton
+                width={80}
+                height={56}
+                title={"登録"}
+                click={() => {
+                  onClick(todo, todos);
+                }}
+              />
+            </form>
+          </div>
         </Grid>
-
+        <Grid item xs={12} sm={3} />
         <Grid item xs={12} sm={4}></Grid>
         <Grid item xs={12} sm={4}>
           <WrapAlert ref={divRef} msg={err} title={"error"}></WrapAlert>
         </Grid>
         <Grid item xs={12} sm={4}></Grid>
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={2}></Grid>
+        <Grid item xs={12} sm={8}>
           <WrapDataTable
             height={500}
             columns={columns}
@@ -114,6 +118,7 @@ const TodoPage = () => {
             width={"100%"}
           ></WrapDataTable>
         </Grid>
+        <Grid item xs={12} sm={2}></Grid>
       </Grid>
     </>
   );
@@ -148,8 +153,13 @@ const columns = [
  * style
  */
 const useStyles = makeStyles({
+  main: {
+    textAlign: "center",
+  },
   form: {
-    marginTop: 200,
+    marginTop: 100,
+    display: "flex",
+    justifyContent: "center",
   },
   btn: {
     marginLeft: 20,

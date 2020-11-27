@@ -37,7 +37,7 @@ const WrapOutlinedTextField = (props: TextFieldProps) => {
  */
 const useStyles = makeStyles({
   field: {
-    width: 350,
+    width: 260,
   },
 });
 
