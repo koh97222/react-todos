@@ -9,7 +9,8 @@
 ## **アプリ概要**
 
 React,TypeScriptの勉強の一環として、作成。
-【URL】　https://master.d15nmvzp5262yg.amplifyapp.com/
+
+https://master.d15nmvzp5262yg.amplifyapp.com/
 
 ## **機能要件**
 
