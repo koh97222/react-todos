@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Top from "../pages/Top";
 import TodoPage from "../pages/TodoPage";
-import User from "../pages/User";
+import TicTacToe from "../pages/TicTacToe";
 import Wheather from "../pages/Weather";
 
 /**
@@ -16,7 +16,7 @@ const WrapRouter = () => {
         <Switch>
           <Route exact path="/" component={Top} />
           <Route exact path="/todo" component={TodoPage} />
-          <Route exact path="/user" component={User} />
+          <Route exact path="/tictactoe" component={TicTacToe} />
           <Route exact path="/weather" component={Wheather} />
         </Switch>
       </BrowserRouter>

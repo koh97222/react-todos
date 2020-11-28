@@ -33,9 +33,9 @@ const Top = () => {
         </Grid>
         <Grid item xs={12} sm={4}>
           <WrapCard
-            title="User画面"
-            description="鋭意作成中"
-            path="/user"
+            title="三目並べ"
+            description="三目並べゲームです。"
+            path="/tictactoe"
             image="user"
           />
         </Grid>
