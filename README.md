@@ -16,3 +16,5 @@ React,TypeScriptの勉強の一環として、作成。
 - 天気予報表示機能
 
 ## **環境構成図**
+
+<img width="1167" alt="スクリーンショット 2020-11-28 13 09 35" src="https://user-images.githubusercontent.com/64691984/100493583-98d89000-317b-11eb-92d4-ea5ff98f9d5b.png">
