@@ -36,15 +36,14 @@ export const Board = () => {
    * @param squares
    */
   const CalculateWinner = (squares: Array<number>) => {
-    lines.forEach((line) => {
-      const [a, b, c] = line;
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
       const aligned =
         squares[a] && squares[a] === squares[b] && squares[a] === squares[c];
-
       if (aligned) {
         return squares[a];
       }
-    });
+    }
     return null;
   };
   const winner = CalculateWinner(squares);
