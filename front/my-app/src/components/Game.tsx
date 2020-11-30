@@ -6,7 +6,8 @@ export const Game = () => {
   const classes = UseStyle();
   const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
   const [xIsNext, setXIsNext] = useState(true);
-  const current = history[history.length - 1];
+  const [stepNumber, setStepNumber] = useState(0);
+  const current = history[stepNumber];
 
   const winner = CalculateWinner(current.squares);
   let status;
@@ -15,6 +16,20 @@ export const Game = () => {
   } else {
     status = "Next player: " + (xIsNext ? "X" : "◯");
   }
+
+  const jumpTo = (step: number) => {
+    setStepNumber(step);
+    setXIsNext(step % 2 === 0);
+  };
+
+  const moves = history.map((_, move) => {
+    const desc = move ? "Go to move #" + move : "go to game start";
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{desc}</button>
+      </li>
+    );
+  });
 
   const handleClick = (i: number) => {
     // 現在の配列を直接変更する代わりに、
@@ -25,15 +40,18 @@ export const Game = () => {
     // 直接的なデータのミューテートを避けることで、ゲームの以前のヒストリをそのまま保って後で再利用することができるようになります。
     // 2.変更の検出がしやすい
     // 参照が変わるから。
-    //
+
+    const tmpHistory = history.slice(0, stepNumber + 1);
     const squares = current.squares.slice();
     if (CalculateWinner(squares) || squares[i]) {
       return;
     }
     squares[i] = xIsNext ? "X" : "◯";
-    setHistory(history.concat({ squares: squares }));
+    setStepNumber(tmpHistory.length);
+    setHistory(tmpHistory.concat({ squares: squares }));
     setXIsNext(!xIsNext);
   };
+
   return (
     <div className={classes.game}>
       <div className="game-board">
@@ -46,7 +64,7 @@ export const Game = () => {
       </div>
       <div className={classes.gameInfo}>
         <div>{status}</div>
-        <ol>{/* TODO */}</ol>
+        <ol>{moves}</ol>
       </div>
     </div>
   );
