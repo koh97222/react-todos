@@ -22,8 +22,24 @@ export const Game = () => {
     setXIsNext(step % 2 === 0);
   };
 
+  const btnSelected = (move: number) => {
+    return move === stepNumber;
+  };
+
   const moves = history.map((_, move) => {
     const desc = move ? "Go to move #" + move : "go to game start";
+
+    // 選択された場合、文字を太字にする。
+    if (btnSelected(move)) {
+      return (
+        <li key={move}>
+          <button className={classes.bold} onClick={() => jumpTo(move)}>
+            {desc}
+          </button>
+        </li>
+      );
+    }
+    // default
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{desc}</button>
@@ -104,5 +120,8 @@ const UseStyle = makeStyles({
   },
   gameInfo: {
     marginLeft: "20px",
+  },
+  bold: {
+    fontWeight: "bold",
   },
 });
