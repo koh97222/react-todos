@@ -8,7 +8,7 @@
 
 ## **アプリ概要**
 
-React,TypeScriptの勉強の一環として、作成。
+React,TypeScriptの勉強の一環として、作成。（2020/11/2~ ）
 
 https://master.d15nmvzp5262yg.amplifyapp.com/
 
@@ -16,6 +16,8 @@ https://master.d15nmvzp5262yg.amplifyapp.com/
 
 - Todo管理機能
 - 天気予報表示機能
+- 三目並べゲーム機能（Reactチュートリアルを参考に、React Hooks,TypeScriptを用いた書き方で実装）
+
 
 ## **環境構成図**
 
