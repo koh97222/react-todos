@@ -12,28 +12,38 @@ interface BoardProps {
 export const Board = (props: BoardProps) => {
   const classes = useStyles();
   const renderSquare = (i: number) => {
-    return <Square value={props.square[i]} onClick={() => props.onClick(i)} />;
+    return (
+      <Square
+        key={i}
+        value={props.square[i]}
+        onClick={() => props.onClick(i)}
+      />
+    );
   };
-  return (
-    <div>
-      {/* <div className={classes.status}>{status}</div> */}
-      <div className={classes.boardRow}>
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
+
+  // Board でマス目を並べる部分を、ハードコーディングではなく 2 つのループを使用するように書き換える。
+  const row = (row: number, loop: number) => {
+    let els: JSX.Element[] = Array(loop).fill(null);
+    let start = row * loop;
+    for (let i = start; i < start + loop; i++) {
+      let tmp = renderSquare(i);
+      els[i] = tmp;
+    }
+    return (
+      <div key={row} className={classes.boardRow}>
+        {els}
       </div>
-      <div className={classes.boardRow}>
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className={classes.boardRow}>
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
-    </div>
-  );
+    );
+  };
+
+  const makeTable = (loop: number) => {
+    let table: JSX.Element[] = [];
+    for (let i = 0; i < loop; i++) {
+      table = table.concat(row(i, loop));
+    }
+    return table;
+  };
+  return <div>{makeTable(3)}</div>;
 };
 
 const useStyles = makeStyles({
