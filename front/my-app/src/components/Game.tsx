@@ -7,12 +7,20 @@ export const Game = () => {
   const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
   const [xIsNext, setXIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
+
   const current = history[stepNumber];
+  const isWins = Array(9).fill(false) as boolean[];
 
   const winner = CalculateWinner(current.squares);
   let status;
   if (winner) {
-    status = "winner: " + winner;
+    status = "winner: " + winner.squares;
+    // どちらかが勝利した際に、勝利につながった3つのマス目をハイライトする。
+    winner.line.forEach((idx: number) => {
+      isWins[idx] = true;
+    });
+
+    console.log(winner.line, current);
   } else {
     status = "Next player: " + (xIsNext ? "X" : "◯");
   }
@@ -72,6 +80,7 @@ export const Game = () => {
     <div className={classes.game}>
       <div className="game-board">
         <Board
+          isWin={isWins}
           square={current.squares}
           onClick={(i: number) => {
             handleClick(i);
@@ -102,12 +111,18 @@ const CalculateWinner = (squares: Array<number>) => {
     [2, 4, 6],
   ];
 
+  const result: { line: number[]; squares: number } = {
+    line: [],
+    squares: 0, // default
+  };
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     const aligned =
       squares[a] && squares[a] === squares[b] && squares[a] === squares[c];
     if (aligned) {
-      return squares[a];
+      result.line = lines[i];
+      result.squares = squares[a];
+      return result;
     }
   }
   return null;

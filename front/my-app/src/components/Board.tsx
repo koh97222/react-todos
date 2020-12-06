@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core";
 interface BoardProps {
   onClick(i: number): void;
   square: any;
+  isWin: boolean[];
 }
 /**
  * 三目並べを表示するコンポーネント
@@ -14,6 +15,7 @@ export const Board = (props: BoardProps) => {
   const renderSquare = (i: number) => {
     return (
       <Square
+        isWin={props.isWin[i]}
         key={i}
         value={props.square[i]}
         onClick={() => props.onClick(i)}
