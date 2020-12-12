@@ -19,10 +19,9 @@ export const Game = () => {
     winner.line.forEach((idx: number) => {
       isWins[idx] = true;
     });
-
-    console.log(winner.line, current);
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "◯");
+    // どちらも勝利しなかった場合、結果が引き分けになったというメッセージを表示する。
+    status = stepNumber >= 9 ? "draw" : "Next player: " + (xIsNext ? "X" : "◯");
   }
 
   const jumpTo = (step: number) => {
