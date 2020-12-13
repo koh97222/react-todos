@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import WithArrowBtn from "./WithArrowBtn";
 import {
   Card,
   CardActionArea,
@@ -12,8 +13,16 @@ import {
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
+  center: {
+    display: "flex",
+    justifyContent: "center",
+  },
   root: {
     maxWidth: 380,
+    border: "1px solid #eee",
+  },
+  txCenter: {
+    textAlign: "center",
   },
   mb30: {
     marginBottom: "30px",
@@ -49,12 +58,22 @@ const WrapCard = (props: CardProps) => {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography
+            className={classes.txCenter}
+            gutterBottom
+            variant="h5"
+            component="h2"
+          >
             {props.title}
           </Typography>
           <Divider />
           <div className={classes.mb30}></div>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            className={classes.txCenter}
+            variant="body2"
+            color="textSecondary"
+            component="p"
+          >
             {props.description}
           </Typography>
         </CardContent>
@@ -67,6 +86,9 @@ const WrapCard = (props: CardProps) => {
           Learn More
         </Button> */}
       </CardActions>
+      <div className={`${classes.center} ${classes.mb30}`}>
+        <WithArrowBtn title={"MORE"} width={120} height={40} />
+      </div>
     </Card>
   );
 };
