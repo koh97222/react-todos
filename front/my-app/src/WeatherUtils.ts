@@ -75,7 +75,6 @@ export const getWeather = async (city: string): Promise<Result> => {
     `${endpoint}?lat=${lat}&lon=${lon}&units=metric&lang=ja&exclude=minutely&appid=${APIkey}`
   );
   const data = (await res.json()) as Result;
-  // console.log(data);
   return data;
 };
 

@@ -25,12 +25,10 @@ const Weather = () => {
   }, [city]);
 
   const getWeatherInfo = (city: string) => {
-    // console.log("getWeatherInfo start");
     setSpinner(true);
     // call REST API
     getWeather(city)
       .then((d) => {
-        // console.log(d);
         setResult(d);
       })
       .catch((d) => {

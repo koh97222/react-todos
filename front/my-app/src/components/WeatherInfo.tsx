@@ -28,8 +28,6 @@ const WeatherInfo = (props: infoProps) => {
     return dForest;
   };
 
-  // console.log(JSON.stringify(daily));
-
   const weather = current.weather[0] as CurrentWeather;
   // 未選択
   if (props.city === "") {
