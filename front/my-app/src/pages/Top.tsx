@@ -21,8 +21,8 @@ const Top = () => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <WrapCard
-              title="Todoアプリ"
-              description="Todoアプリです。"
+              title="？？？"
+              description="鋭意開発中"
               path="/todo"
               image="todo"
             />
